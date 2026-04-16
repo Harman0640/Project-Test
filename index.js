@@ -1,18 +1,26 @@
-// index.js
+// index.js (Improved version)
 
-// Import built-in module
 const http = require('http');
 
-// Create server
+// Create server with basic routing
 const server = http.createServer((req, res) => {
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end('Hello, World! Server is running 🚀');
+
+    if (req.url === '/') {
+        res.writeHead(200, { 'Content-Type': 'text/plain' });
+        res.end('Home Page 🏠');
+    } 
+    else if (req.url === '/about') {
+        res.writeHead(200, { 'Content-Type': 'text/plain' });
+        res.end('About Page 📄');
+    } 
+    else {
+        res.writeHead(404, { 'Content-Type': 'text/plain' });
+        res.end('Page Not Found ❌');
+    }
 });
 
-// Define port
 const PORT = 3000;
 
-// Start server
 server.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+    console.log(`Server running at http://localhost:${PORT}`);
 });
